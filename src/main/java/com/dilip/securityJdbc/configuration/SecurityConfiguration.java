@@ -64,7 +64,7 @@ public class SecurityConfiguration {
 				})
 				.csrf().disable()
 				.exceptionHandling().and()
-				.formLogin().and() //shame, this line took me 8 hours spread over two days
+				.formLogin().and() 
 				.build()
 				);
 	}
