@@ -1,7 +1,5 @@
-Reference Video: 
-https://www.youtube.com/watch?v=LKvrFltAgCQ&list=PLqq-6Pq4lTTYTEooakHchTGglSvkZAjnE&index=7
-
-
+This project demonstrates how to setup Spring security with JDBC and JPA
+ 
 This version uses SpringBoot 3.x version and Security with SecruityChainFilter
 
 This project implements Spring security with the default tables as well 
@@ -13,7 +11,14 @@ Custom Table: dch_user
 To Use the default tables (Spring security default tables), enable the 
 security configuration class - com.dilip.securityJdbc.configuration.SecurityConfigurationDJDBC.java
 
+For the JPA implementation, the password should be encoded password as the bean here expects
+encrypted password:
 
-Password Used:
-
-dilip => '$2a$12$VDlsOkWde5VoRy3eog8ap.C7/qit9tBQwaiXGDrhRT8LMuE0US.rq' => Actual String: 'pass'
+	@Bean
+	@Autowired
+	public PasswordEncoder passwordEncoder() {
+		return new BCryptPasswordEncoder(); <== this is why you need encoded password in the database
+	}
+	
+For password (Bcrypt encrypted hash), use this link to get one for the given string:
+https://bcrypt-generator.com/
